@@ -4,4 +4,6 @@ global:
 scrape_configs:
   - job_name: 'rpc_monitor'
     static_configs:
-      - targets: ['monitor:8000']  # Use service name 'monitor' instead of 'localhost:8000'
+      - targets: ['ethlag-monitor:8000']
+      # - targets: ['monitor:8000']  # Use service name 'monitor' instead of 'localhost:8000'
+
