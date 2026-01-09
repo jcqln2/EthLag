@@ -1,6 +1,6 @@
 # EthLag
 A basic test for Ethereum node providers. 
-If you're building anything on Ethereum, you need to connect to the blockchain through an RPC provider (such as Alchemy, Infura, or QuickNode), and some are way faster than others.
+If you're building anything on Ethereum, you need to connect to the blockchain through an RPC provider (such as Alchemy, Infura, or Public Node), and some are way faster than others.
 
 This tool pings different providers and tracks how long they take to respond. It measures the eth_blockNumber call, the most basic request you can make to a blockchain.
 

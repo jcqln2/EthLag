@@ -14,17 +14,17 @@ import (
 )
 
 const (
-	quicknodeURL = "https://silent-quick-friday.quiknode.pro/d8cf26c2a9654037b9860098642485117a941d7f/"
-	alchemyURL   = "https://eth-mainnet.g.alchemy.com/v2/88eZBls2st3aenXrIVk4p" // Ensure this has a valid API key
+	publicNodeURL = "https://ethereum-rpc.publicnode.com"
+	alchemyURL    = "https://eth-mainnet.g.alchemy.com/v2/88eZBls2st3aenXrIVk4p" // Ensure this has a valid API key
 )
 
 var rpcBody = []byte(`{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}`)
 
 type Model struct {
-	QuicknodeLatency float64
-	AlchemyLatency   float64
-	QuicknodeGauge   prometheus.Gauge
-	AlchemyGauge     prometheus.Gauge
+	PublicNodeLatency float64
+	AlchemyLatency    float64
+	PublicNodeGauge   prometheus.Gauge
+	AlchemyGauge      prometheus.Gauge
 }
 
 type Controller struct {
@@ -33,9 +33,9 @@ type Controller struct {
 
 func NewModel() *Model {
 	return &Model{
-		QuicknodeGauge: promauto.NewGauge(prometheus.GaugeOpts{
-			Name: "eth_rpc_quicknode_latency_seconds",
-			Help: "Latency of eth_blockNumber to QuickNode",
+		PublicNodeGauge: promauto.NewGauge(prometheus.GaugeOpts{
+			Name: "eth_rpc_publicnode_latency_seconds",
+			Help: "Latency of eth_blockNumber to Public Node",
 		}),
 		AlchemyGauge: promauto.NewGauge(prometheus.GaugeOpts{
 			Name: "eth_rpc_alchemy_latency_seconds",
@@ -70,7 +70,7 @@ func (c *Controller) MeasureLatency(url string, gauge prometheus.Gauge) {
 }
 
 func (c *Controller) UpdateModel() {
-	c.MeasureLatency(quicknodeURL, c.Model.QuicknodeGauge)
+	c.MeasureLatency(publicNodeURL, c.Model.PublicNodeGauge)
 	c.MeasureLatency(alchemyURL, c.Model.AlchemyGauge)
 }
 

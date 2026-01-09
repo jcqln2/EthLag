@@ -4,7 +4,7 @@
   "version": 1,
   "panels": [
     {
-      "title": "QuickNode Latency",
+      "title": "Public Node Latency",
       "type": "timeseries",
       "datasource": {
         "type": "prometheus",
@@ -12,8 +12,8 @@
       },
       "targets": [
         {
-          "expr": "eth_rpc_quicknode_latency_seconds",
-          "legendFormat": "QuickNode"
+          "expr": "eth_rpc_publicnode_latency_seconds",
+          "legendFormat": "Public Node"
         }
       ],
       "gridPos": {
@@ -54,7 +54,7 @@
       }
     },
     {
-      "title": "Latency Comparison (Ratio: QuickNode / Alchemy)",
+      "title": "Latency Comparison (Ratio: Public Node / Alchemy)",
       "type": "timeseries",
       "datasource": {
         "type": "prometheus",
@@ -62,16 +62,16 @@
       },
       "targets": [
         {
-          "expr": "eth_rpc_quicknode_latency_seconds",
-          "legendFormat": "QuickNode"
+          "expr": "eth_rpc_publicnode_latency_seconds",
+          "legendFormat": "Public Node"
         },
         {
           "expr": "eth_rpc_alchemy_latency_seconds",
           "legendFormat": "Alchemy"
         },
         {
-          "expr": "eth_rpc_quicknode_latency_seconds / eth_rpc_alchemy_latency_seconds",
-          "legendFormat": "Ratio (QuickNode / Alchemy)"
+          "expr": "eth_rpc_publicnode_latency_seconds / eth_rpc_alchemy_latency_seconds",
+          "legendFormat": "Ratio (Public Node / Alchemy)"
         }
       ],
       "gridPos": {
