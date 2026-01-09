@@ -4,5 +4,4 @@ global:
 scrape_configs:
   - job_name: 'rpc_monitor'
     static_configs:
-    - targets: ['https://ethlag-1.onrender.com/metrics']
-     
+    - targets: ['monitor:8000']
