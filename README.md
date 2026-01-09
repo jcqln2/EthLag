@@ -8,5 +8,5 @@ The stack:
 
 Go service that checks each provider every 30 seconds
 Prometheus 
-Grafana for the dashboard where you can see the charts: http://140.238.155.196:3000/public-dashboards/6efe2e20190d486ba364ef8f45567f8f 
-Docker 
+Grafana for the dashboard [Self hosted on an Oracle Cloud VM running Ubuntu, with Docker ](http://140.238.155.196:3000/public-dashboards/9dff7c1669b44d9bb8e8e9381ad982a4)
+
