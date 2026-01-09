@@ -1,91 +1,167 @@
 {
-  "title": "ETH RPC Latency Comparison",
-  "uid": "eth-rpc-latency",
-  "version": 1,
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "links": [],
   "panels": [
     {
-      "title": "Public Node Latency",
-      "type": "timeseries",
       "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
-      },
-      "targets": [
-        {
-          "expr": "eth_rpc_publicnode_latency_seconds",
-          "legendFormat": "Public Node"
-        }
-      ],
-      "gridPos": {
-        "x": 0,
-        "y": 0,
-        "w": 12,
-        "h": 8
       },
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Response Time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.05
+              },
+              {
+                "color": "red",
+                "value": 0.1
+              }
+            ]
+          },
           "unit": "s"
-        }
-      }
-    },
-    {
-      "title": "Alchemy Latency",
-      "type": "timeseries",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "targets": [
-        {
-          "expr": "eth_rpc_alchemy_latency_seconds",
-          "legendFormat": "Alchemy"
-        }
-      ],
-      "gridPos": {
-        "x": 12,
-        "y": 0,
-        "w": 12,
-        "h": 8
-      },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s"
-        }
-      }
-    },
-    {
-      "title": "Latency Comparison (Ratio: Public Node / Alchemy)",
-      "type": "timeseries",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "targets": [
-        {
-          "expr": "eth_rpc_publicnode_latency_seconds",
-          "legendFormat": "Public Node"
         },
-        {
-          "expr": "eth_rpc_alchemy_latency_seconds",
-          "legendFormat": "Alchemy"
-        },
-        {
-          "expr": "eth_rpc_publicnode_latency_seconds / eth_rpc_alchemy_latency_seconds",
-          "legendFormat": "Ratio (Public Node / Alchemy)"
-        }
-      ],
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alchemy RPC"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PublicNode RPC"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
-        "x": 0,
-        "y": 8,
+        "h": 12,
         "w": 24,
-        "h": 8
+        "x": 0,
+        "y": 0
       },
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s"
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
         }
-      }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "eth_rpc_alchemy_latency_seconds",
+          "legendFormat": "Alchemy RPC",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "eth_rpc_publicnode_latency_seconds",
+          "legendFormat": "PublicNode RPC",
+          "refId": "B"
+        }
+      ],
+      "title": "Ethereum RPC Latency Comparison",
+      "type": "timeseries"
     }
-  ]
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["ethereum", "rpc", "monitoring"],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Ethereum RPC Latency Comparison",
+  "uid": "eth-rpc-latency",
+  "version": 1,
+  "weekStart": ""
 }
-
