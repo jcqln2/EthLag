@@ -1,0 +1,91 @@
+{
+  "title": "ETH RPC Latency Comparison",
+  "uid": "eth-rpc-latency",
+  "version": 1,
+  "panels": [
+    {
+      "title": "Public Node Latency",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "targets": [
+        {
+          "expr": "eth_rpc_publicnode_latency_seconds",
+          "legendFormat": "Public Node"
+        }
+      ],
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      }
+    },
+    {
+      "title": "Alchemy Latency",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "targets": [
+        {
+          "expr": "eth_rpc_alchemy_latency_seconds",
+          "legendFormat": "Alchemy"
+        }
+      ],
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      }
+    },
+    {
+      "title": "Latency Comparison (Ratio: Public Node / Alchemy)",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "targets": [
+        {
+          "expr": "eth_rpc_publicnode_latency_seconds",
+          "legendFormat": "Public Node"
+        },
+        {
+          "expr": "eth_rpc_alchemy_latency_seconds",
+          "legendFormat": "Alchemy"
+        },
+        {
+          "expr": "eth_rpc_publicnode_latency_seconds / eth_rpc_alchemy_latency_seconds",
+          "legendFormat": "Ratio (Public Node / Alchemy)"
+        }
+      ],
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 24,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      }
+    }
+  ]
+}
+

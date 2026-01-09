@@ -15,6 +15,12 @@ services:
     image: grafana/grafana
     ports:
       - "3000:3000"
+    environment:
+      - GF_SERVER_ROOT_URL=http://140.238.155.196:3000
+      - GF_SERVER_DOMAIN=140.238.155.196
     volumes:
       - ./grafanaView/provisioning:/etc/grafana/provisioning
-      - ./grafanaView/dashboard.json:/etc/grafana/provisioning/dashboards/dashboard.json
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  grafana-storage:
