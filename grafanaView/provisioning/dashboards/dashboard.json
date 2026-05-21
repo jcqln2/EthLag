@@ -20,7 +20,7 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Response Time",
+            "axisLabel": "Latency (ms)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -47,6 +47,7 @@
               "mode": "off"
             }
           },
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -57,21 +58,21 @@
               },
               {
                 "color": "yellow",
-                "value": 0.05
+                "value": 50
               },
               {
                 "color": "red",
-                "value": 0.1
+                "value": 100
               }
             ]
           },
-          "unit": "s"
+          "unit": "ms"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "Alchemy RPC"
+              "options": "Alchemy"
             },
             "properties": [
               {
@@ -86,7 +87,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "PublicNode RPC"
+              "options": "PublicNode"
             },
             "properties": [
               {
@@ -109,18 +110,14 @@
       "id": 1,
       "options": {
         "legend": {
-          "calcs": [
-            "last",
-            "mean",
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": ["last"],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "targets": [
@@ -129,8 +126,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "eth_rpc_alchemy_latency_seconds",
-          "legendFormat": "Alchemy RPC",
+          "expr": "eth_rpc_alchemy_latency_seconds * 1000",
+          "legendFormat": "Alchemy",
           "refId": "A"
         },
         {
@@ -138,12 +135,12 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "eth_rpc_publicnode_latency_seconds",
-          "legendFormat": "PublicNode RPC",
+          "expr": "eth_rpc_publicnode_latency_seconds * 1000",
+          "legendFormat": "PublicNode",
           "refId": "B"
         }
       ],
-      "title": "Ethereum RPC Latency Comparison",
+      "title": "RPC latency — eth_blockNumber",
       "type": "timeseries"
     }
   ],
@@ -160,8 +157,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Ethereum RPC Latency Comparison",
-  "uid": "eth-rpc-latency",
-  "version": 1,
+  "title": "ETH RPC Latency",
+  "uid": "ethblocknumber",
+  "version": 2,
   "weekStart": ""
 }

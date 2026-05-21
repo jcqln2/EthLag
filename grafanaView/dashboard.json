@@ -1,10 +1,10 @@
 {
   "title": "ETH RPC Latency Comparison",
   "uid": "eth-rpc-latency",
-  "version": 1,
+  "version": 2,
   "panels": [
     {
-      "title": "Public Node Latency",
+      "title": "PublicNode — eth_blockNumber",
       "type": "timeseries",
       "datasource": {
         "type": "prometheus",
@@ -12,8 +12,8 @@
       },
       "targets": [
         {
-          "expr": "eth_rpc_publicnode_latency_seconds",
-          "legendFormat": "Public Node"
+          "expr": "eth_rpc_publicnode_latency_seconds * 1000",
+          "legendFormat": "PublicNode"
         }
       ],
       "gridPos": {
@@ -24,12 +24,19 @@
       },
       "fieldConfig": {
         "defaults": {
-          "unit": "s"
+          "decimals": 1,
+          "unit": "ms"
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "showLegend": true
         }
       }
     },
     {
-      "title": "Alchemy Latency",
+      "title": "Alchemy — eth_blockNumber",
       "type": "timeseries",
       "datasource": {
         "type": "prometheus",
@@ -37,7 +44,7 @@
       },
       "targets": [
         {
-          "expr": "eth_rpc_alchemy_latency_seconds",
+          "expr": "eth_rpc_alchemy_latency_seconds * 1000",
           "legendFormat": "Alchemy"
         }
       ],
@@ -49,12 +56,19 @@
       },
       "fieldConfig": {
         "defaults": {
-          "unit": "s"
+          "decimals": 1,
+          "unit": "ms"
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "showLegend": true
         }
       }
     },
     {
-      "title": "Latency Comparison (Ratio: Public Node / Alchemy)",
+      "title": "RPC latency comparison",
       "type": "timeseries",
       "datasource": {
         "type": "prometheus",
@@ -62,16 +76,16 @@
       },
       "targets": [
         {
-          "expr": "eth_rpc_publicnode_latency_seconds",
-          "legendFormat": "Public Node"
+          "expr": "eth_rpc_publicnode_latency_seconds * 1000",
+          "legendFormat": "PublicNode"
         },
         {
-          "expr": "eth_rpc_alchemy_latency_seconds",
+          "expr": "eth_rpc_alchemy_latency_seconds * 1000",
           "legendFormat": "Alchemy"
         },
         {
           "expr": "eth_rpc_publicnode_latency_seconds / eth_rpc_alchemy_latency_seconds",
-          "legendFormat": "Ratio (Public Node / Alchemy)"
+          "legendFormat": "Ratio (PublicNode / Alchemy)"
         }
       ],
       "gridPos": {
@@ -82,7 +96,33 @@
       },
       "fieldConfig": {
         "defaults": {
-          "unit": "s"
+          "decimals": 2,
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ratio (PublicNode / Alchemy)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "calcs": ["last"],
+          "displayMode": "list",
+          "showLegend": true
         }
       }
     }
